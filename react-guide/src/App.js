@@ -9,7 +9,8 @@ class App extends Component {
             {name: 'Alex', age: 35},
             {name: 'Maxim', age: 35},
             {name: 'Julia', age: 35},
-        ]
+        ],
+        showList: false,
     };
 
     switchNameHandler = (newName) => {
@@ -32,26 +33,41 @@ class App extends Component {
         });
     }
 
+    toggleList = () => {
+        // const dataOfList = this.state.showList;
+        this.setState({showList: !this.state.showList})
+        console.log(this.state.showList)
+    }
+
     render() {
         const style = {
             backgroundColor: '#efbd93',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            marginRight: '10px'
         };
 
         return (
             <div className="App" >
                 <h1>Hi, I'm a React App</h1>
-                <button
-                    onClick={this.switchNameHandler.bind(this, 'Jex')}
-                    style={style}
-                >Switch a Name</button>
-                <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
-                <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} />
-
+                <div>
+                    <button
+                        onClick={this.switchNameHandler.bind(this, 'Jex')}
+                        style={style}
+                    >Switch a Name</button>
+                    <button style={style} onClick={this.toggleList} >Toggle the list</button>
+                </div>
+                {
+                    this.state.showList ?
+                        <div>
+                            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+                            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
+                            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} />
+                        </div>
+                        : null
+                }
             </div>
         )
     }
