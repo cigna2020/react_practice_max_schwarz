@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.userOutput {
+  width: 50%;
+  height: 20%;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  box-shadow: 10px 10px 10px #111;
+}
+
+.userInput {
+  width: 50%;
+  height: 50px;
+  padding-top: 40px;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  box-shadow: 10px 10px 10px #111;
+  background-color: #0faaaf;
+}
