@@ -1,0 +1,7 @@
+.outputText {
+  font: inherit;
+  border: 1px solid black;
+  width: 30%;
+  height: 30px;
+  margin: 20px auto;
+}
