@@ -49,6 +49,18 @@ class App extends Component {
             marginRight: '10px'
         };
 
+        let personsList = null;
+
+        if (this.state.showList) {
+            personsList = (
+                <div>
+                    <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+                    <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
+                    <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} />
+                </div>
+            );
+        }
+
         return (
             <div className="App" >
                 <h1>Hi, I'm a React App</h1>
@@ -59,15 +71,7 @@ class App extends Component {
                     >Switch a Name</button>
                     <button style={style} onClick={this.toggleList} >Toggle the list</button>
                 </div>
-                {
-                    this.state.showList ?
-                        <div>
-                            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
-                            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} />
-                        </div>
-                        : null
-                }
+                {personsList}
             </div>
         )
     }
