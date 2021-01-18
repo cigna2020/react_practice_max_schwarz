@@ -39,6 +39,12 @@ class App extends Component {
         console.log(this.state.showList)
     }
 
+    deletePersonHandler = (personIndex) => {
+        const persons = [...this.state.persons];  // копія списку, те саму, this.state.persons.slice(). Просто this.state.persons - погана практика 
+        persons.splice(personIndex, 1);
+        this.setState({persons: persons});
+    }
+
     render() {
         const style = {
             backgroundColor: '#efbd93',
@@ -54,8 +60,12 @@ class App extends Component {
         if (this.state.showList) {
             personsList = (
                 <div>
-                    {this.state.persons.map(person => {
-                        return <Person name={person.name} age={person.age} />
+                    {this.state.persons.map((person, index) => {
+                        return <Person
+                            name={person.name}
+                            age={person.age}
+                            clickH2={() => this.deletePersonHandler(index)}
+                        />
                     })}
                     {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
                     <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
