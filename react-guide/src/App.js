@@ -54,9 +54,12 @@ class App extends Component {
         if (this.state.showList) {
             personsList = (
                 <div>
-                    <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+                    {this.state.persons.map(person => {
+                        return <Person name={person.name} age={person.age} />
+                    })}
+                    {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
                     <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
-                    <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} />
+                    <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} /> */}
                 </div>
             );
         }
