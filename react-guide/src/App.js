@@ -6,9 +6,9 @@ class App extends Component {
 
     state = {
         persons: [
-            {name: 'Alex', age: 35},
-            {name: 'Maxim', age: 35},
-            {name: 'Julia', age: 35},
+            {id: '332132', name: 'Alex', age: 35},
+            {id: 'fdsaf', name: 'Maxim', age: 35},
+            {id: 'ferd4343', name: 'Julia', age: 35},
         ],
         showList: false,
     };
@@ -16,22 +16,36 @@ class App extends Component {
     switchNameHandler = (newName) => {
         this.setState({
             persons: [
-                {name: 'Alexander', age: 35},
-                {name: 'Maxim', age: 35},
-                {name: newName, age: 32},
+                {id: '332132', name: 'Alexander', age: 35},
+                {id: 'fdsaf', name: 'Maxim', age: 35},
+                {id: 'ferd4343', name: newName, age: 32},
             ]
         });
     }
 
-    inputChangeHandler = (event) => {
-        this.setState({
-            persons: [
-                {name: 'Alex', age: 35},
-                {name: event.target.value, age: 35},
-                {name: 'Julia', age: 35},
-            ]
+    inputChangeHandler = (event, id) => {
+        const pesronIndex = this.state.persons.findIndex(person => {
+            return person.id === id;
         });
-    }
+
+        // const person = Object.assign({}, this.state.persons[pesronIndex]);
+        const person = {...this.state.persons[pesronIndex]};
+
+        person.name = event.target.value;
+
+        const persons = [...this.state.persons];
+        persons[pesronIndex] = person;
+
+        this.setState({persons: persons});
+
+        // this.setState({
+        //     persons: [
+        //         {id: '332132', name: 'Alex', age: 35},
+        //         {id: 'fdsaf', name: event.target.value, age: 35},
+        //         {id: 'ferd4343', name: 'Julia', age: 35},
+        //     ]
+        // });
+    };
 
     toggleList = () => {
         // const dataOfList = this.state.showList;
@@ -64,7 +78,9 @@ class App extends Component {
                         return <Person
                             name={person.name}
                             age={person.age}
+                            key={person.id}
                             clickH2={() => this.deletePersonHandler(index)}
+                            changeInput={(event) => this.inputChangeHandler(event, person.id)}
                         />
                     })}
                     {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
