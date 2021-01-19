@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 import './App.css';
-import Person from './Person/Person.js'
+import Persons from '../components/Persons/Persons.js'
 
 const StyledButton = styled.button`
     background-color: ${props => props.showList ? 'red' : 'green'};
@@ -100,7 +100,12 @@ class App extends Component {
         if (this.state.showList) {
             personsList = (
                 <div>
-                    {this.state.persons.map((person, index) => {
+                    <Persons
+                        persons={this.state.persons}
+                        clicked={this.deletePersonHandler}
+                        changed={this.inputChangeHandler}
+                    />
+                    {/* {this.state.persons.map((person, index) => {
                         return <Person
                             name={person.name}
                             age={person.age}
@@ -108,10 +113,7 @@ class App extends Component {
                             clickH2={() => this.deletePersonHandler(index)}
                             changeInput={(event) => this.inputChangeHandler(event, person.id)}
                         />
-                    })}
-                    {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                    <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeInput={this.inputChangeHandler}> My hobie is programing</Person>
-                    <Person name={this.state.persons[2].name} age={this.state.persons[2].age} clickH2={this.switchNameHandler.bind(this, 'Drue')} /> */}
+                    })} */}
                 </div>
             );
 
