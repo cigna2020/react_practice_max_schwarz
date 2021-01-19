@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from './Person/Person.js'
 
@@ -113,20 +112,18 @@ class App extends Component {
 
 
         return (
-            <StyleRoot>
-                <div className="App" >
-                    <h1>Hi, I'm a React App</h1>
-                    <p className={classes.join(' ')}>It's really working!</p>
-                    <div>
-                        <button
-                            onClick={this.switchNameHandler.bind(this, 'Jex')}
-                        // style={style} // radium requires a unique element
-                        >Switch a Name</button>
-                        <button style={style} onClick={this.toggleList} >Toggle the list</button>
-                    </div>
-                    {personsList}
+            <div className="App" >
+                <h1>Hi, I'm a React App</h1>
+                <p className={classes.join(' ')}>It's really working!</p>
+                <div>
+                    <button
+                        onClick={this.switchNameHandler.bind(this, 'Jex')}
+                        style={style} // radium requires a unique element
+                    >Switch a Name</button>
+                    <button style={style} onClick={this.toggleList} >Toggle the list</button>
                 </div>
-            </StyleRoot>
+                {personsList}
+            </div>
         )
     }
     // return (
@@ -136,4 +133,4 @@ class App extends Component {
 
 }
 
-export default Radium(App);
+export default App;
