@@ -1,6 +1,24 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
+
 import './App.css';
 import Person from './Person/Person.js'
+
+const StyledButton = styled.button`
+    background-color: ${props => props.showList ? 'red' : 'green'};
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+
+        &:hover {
+            background-color: ${props => props.showList ? 'yellow' : '#8cd85c'} ;
+            color: black;
+            font-weight: bold;
+        }
+`;
 
 class App extends Component {
 
@@ -59,21 +77,23 @@ class App extends Component {
         this.setState({persons: persons});
     }
 
+
+
     render() {
-        const style = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer',
-            marginRight: '10px',
-            ':hover': {
-                backgroundColor: '#8cd85c',
-                color: 'black',
-                fontWeight: 'bold',
-            }
-        };
+        // const style = {
+        //     backgroundColor: 'green',
+        //     color: 'white',
+        //     font: 'inherit',
+        //     border: '1px solid blue',
+        //     padding: '8px',
+        //     cursor: 'pointer',
+        //     marginRight: '10px',
+        //     ':hover': {
+        //         backgroundColor: '#8cd85c',
+        //         color: 'black',
+        //         fontWeight: 'bold',
+        //     }
+        // };
 
         let personsList = null;
 
@@ -95,12 +115,12 @@ class App extends Component {
                 </div>
             );
 
-            style.backgroundColor = 'red';
-            style[':hover'] = {
-                backgroundColor: 'yellow',
-                color: 'black',
-                fontWeight: 'bold',
-            }
+            // style.backgroundColor = 'red';
+            // style[':hover'] = {
+            //     backgroundColor: 'yellow',
+            //     color: 'black',
+            //     fontWeight: 'bold',
+            // }
         }
 
         let classes = [];
@@ -116,11 +136,15 @@ class App extends Component {
                 <h1>Hi, I'm a React App</h1>
                 <p className={classes.join(' ')}>It's really working!</p>
                 <div>
-                    <button
+                    <StyledButton
+                        showList={this.state.showList}
                         onClick={this.switchNameHandler.bind(this, 'Jex')}
-                        style={style} // radium requires a unique element
-                    >Switch a Name</button>
-                    <button style={style} onClick={this.toggleList} >Toggle the list</button>
+                    // style={style} // radium requires a unique element
+                    >Switch a Name</StyledButton>
+                    <StyledButton
+                        showList={this.state.showList}
+                        onClick={this.toggleList}
+                    >Toggle the list</StyledButton>
                 </div>
                 {personsList}
             </div>
