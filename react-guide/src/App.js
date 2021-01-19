@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Radium from 'radium';
 import './App.css';
 import Person from './Person/Person.js'
 
@@ -67,7 +68,12 @@ class App extends Component {
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer',
-            marginRight: '10px'
+            marginRight: '10px',
+            ':hover': {
+                backgroundColor: 'lightgreen',
+                color: 'black',
+                fontWeight: 'bold',
+            }
         };
 
         let personsList = null;
@@ -91,6 +97,11 @@ class App extends Component {
             );
 
             style.backgroundColor = 'red';
+            style[':hover'] = {
+                backgroundColor: 'yellow',
+                color: 'black',
+                fontWeight: 'bold',
+            }
         }
 
         let classes = [];
@@ -108,7 +119,7 @@ class App extends Component {
                 <div>
                     <button
                         onClick={this.switchNameHandler.bind(this, 'Jex')}
-                        style={style}
+                    // style={style} // radium requires a unique element
                     >Switch a Name</button>
                     <button style={style} onClick={this.toggleList} >Toggle the list</button>
                 </div>
@@ -123,4 +134,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default Radium(App);
