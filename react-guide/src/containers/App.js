@@ -8,6 +8,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
+    static getDerivedStateFromProps(props, state) {
+        console.log('[App.js] getDerivedStateFromProps', props);
+        return state;
+    }
+
     state = {
         persons: [
             {id: '332132', name: 'Alex', age: 35},
@@ -25,6 +30,19 @@ class App extends Component {
                 {id: 'ferd4343', name: newName, age: 32},
             ]
         });
+    }
+
+    componentDidMount() {
+        console.log('[App.js] componentDidMount');
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[App.js] shouldComponentUpdate');
+        return true;   // false - список не тоглиться
+    }
+
+    componentDidUpdate() {
+        console.log('[App.js] componentDidUpdate')
     }
 
     inputChangeHandler = (event, id) => {
@@ -46,7 +64,6 @@ class App extends Component {
 
     toggleList = () => {
         this.setState({showList: !this.state.showList})
-        console.log(this.state.showList)
     }
 
     deletePersonHandler = (personIndex) => {
@@ -74,6 +91,7 @@ class App extends Component {
         return (
             <div className="App" >
                 <Cockpit
+                    title={this.props.appTitle}
                     showList={this.state.showList}
                     persons={this.state.persons}
                     switcher={this.switchNameHandler}
