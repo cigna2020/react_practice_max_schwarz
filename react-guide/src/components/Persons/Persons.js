@@ -11,7 +11,13 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("[PersonS.js] shouldComponentUpdate");
-        return true;
+        if (nextProps.persons !== this.props.persons) {    // Якщо дані не змінилися, повторний рендеринг не відбувається
+            return true
+        } else {
+            return false
+        }
+        // return true;
+
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {

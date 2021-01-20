@@ -5,11 +5,10 @@ const cockpit = (props) => {
 
     useEffect(() => {
         console.log('[Cocpit.js] useEffect');
-        const timer = setTimeout(() => {
+        setTimeout(() => {
             alert('use Effect')
         }, 1000);
         return () => {
-            clearTimeout(timer);    // якщо Cocpit буде видалено до 1 сек., то не викине alert 
             console.log('[Cocpit.js] cleanup work in useEffect')  // викликається коли об'єкт видаляється зі сторінки
         }
     }, []);  // при пустому масиві useEffect буде викликано лише при першому рендерингу
