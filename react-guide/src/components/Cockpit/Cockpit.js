@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components'
 
 const cockpit = (props) => {
+
+    useEffect(() => {
+        console.log('[Cocpit.js] useEffect');
+        setTimeout(() => {
+            alert('use Effect')
+        }, 1000);
+        return () => {
+            console.log('[Cocpit.js] cleanup work in useEffect')  // викликається коли об'єкт видаляється зі сторінки
+        }
+    }, []);  // при пустому масиві useEffect буде викликано лише при першому рендерингу
+    // }, [props.persons]);  // props.persons - означае, що useEffect буде викликано лише при першому рендерингу та при зміні persons
+
+    useEffect(() => {
+        console.log('[Cocpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cocpit.js] cleanup work 2nd in useEffect'); // викликається кожен раз ПЕРЕД 2nd useEffect
+        }
+    })
 
     const StyledButton = styled.button`
     background-color: ${props => props.showList ? 'red' : 'green'};

@@ -25,6 +25,10 @@ class Persons extends Component {
         console.log(snapshot);  // return {message: 'SnapShot!'}
     }
 
+    componentWillUnmount() {
+        console.log('[PesonS.js], componentWillUnmount'); // викликається коли компонет зникає з сторінки (toggle persons)
+    };
+
     render() {
         console.log('[PersonS.js] rendering...');
 

@@ -20,6 +20,7 @@ class App extends Component {
             {id: 'ferd4343', name: 'Julia', age: 35},
         ],
         showList: false,
+        showCocpit: true,
     };
 
     switchNameHandler = (newName) => {
@@ -28,7 +29,7 @@ class App extends Component {
                 {id: '332132', name: 'Alexander', age: 35},
                 {id: 'fdsaf', name: 'Maxim', age: 35},
                 {id: 'ferd4343', name: newName, age: 32},
-            ]
+            ],
         });
     }
 
@@ -74,6 +75,8 @@ class App extends Component {
 
     render() {
 
+        console.log('[App.js] render...')
+
         let personsList = null;
 
         if (this.state.showList) {
@@ -90,13 +93,20 @@ class App extends Component {
 
         return (
             <div className="App" >
-                <Cockpit
-                    title={this.props.appTitle}
-                    showList={this.state.showList}
-                    persons={this.state.persons}
-                    switcher={this.switchNameHandler}
-                    toggler={this.toggleList}
-                />
+                <button onClick={() => {
+                    this.setState({showCocpit: false})
+                }}>Toggle Cockpit</button>
+                { this.state.showCocpit ? (
+                    <Cockpit
+                        title={this.props.appTitle}
+                        showList={this.state.showList}
+                        persons={this.state.persons}
+                        switcher={this.switchNameHandler}
+                        toggler={this.toggleList}
+                    />
+                ) : null
+                }
+
                 {personsList}
             </div>
         )
