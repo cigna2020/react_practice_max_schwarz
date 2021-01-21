@@ -1,24 +1,26 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {                               // PureComponent - заміняє shouldComponentUpdate з всіма видами перевірки
     // static getDerivedStateFromProps(props, state) {
     //     // console.log("Props: " + props + "State: " + state);
     //     console.log('[PersonS.js] getDerivedStateFromProps');
     //     return state;
     // }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("[PersonS.js] shouldComponentUpdate");
-        if (nextProps.persons !== this.props.persons) {    // Якщо дані не змінилися, повторний рендеринг не відбувається
-            return true
-        } else {
-            return false
-        }
-        // return true;
-
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("[PersonS.js] shouldComponentUpdate");
+    //     if (nextProps.persons !== this.props.persons ||
+    //         nextProps.clicked !== this.props.clicked ||
+    //         nextProps.changed !== this.props.changed
+    //     ) {    // Якщо дані не змінилися, повторний рендеринг не відбувається
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    //     // return true;
+    // }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[PersonS.js] getSnapshotBeforeUpdate');
