@@ -22,6 +22,7 @@ class App extends Component {
         ],
         showList: false,
         showCocpit: true,
+        changeCounter: 0,
     };
 
     switchNameHandler = (newName) => {
@@ -60,8 +61,17 @@ class App extends Component {
         const persons = [...this.state.persons];
         persons[pesronIndex] = person;
 
-        this.setState({persons: persons});
+        // this.setState({
+        //     persons: persons,
+        //     changeCounter: this.state.changeCounter + 1,  // не має гарантії, що 1 буде додано саме до останнього значення
+        // });
 
+        this.setState((prevState, props) => {
+            return {
+                persons: persons,
+                changeCounter: prevState.changeCounter + 1  // в такому випадку 1 точно буде додано до крайнього значення
+            };
+        });
     };
 
     toggleList = () => {
