@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 // import styled from 'styled-components';
 
-import Auxiliary from '../../../hoc/Auxiliary';
+// import Auxiliary from '../../../hoc/Auxiliary';
 // import './Person.css'
 
 // const StyledDiv = styled.div`
@@ -23,11 +23,11 @@ class Person extends Component {
         console.log('[Person.js] rendering...');
 
         return (
-            <Auxiliary >
+            <Fragment >
                 <h2 onClick={this.props.clickH2}>I'm {this.props.name}! And I'm {this.props.age} years old!</h2>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changeInput} value={this.props.name} />
-            </Auxiliary>
+            </Fragment>
         );
     };
 }
