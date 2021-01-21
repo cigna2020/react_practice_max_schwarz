@@ -38,9 +38,9 @@ const cockpit = (props) => {
 `;
 
     let classes = [];
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {     // якщо буде пряме посилання на persons, а не на пропс, тоді буде ререндиринг навіть з memo
         classes.push('bold');
-    } if (props.persons.length <= 1) {
+    } if (props.personsLength <= 1) {
         classes.push('red');
     }
 
@@ -62,4 +62,4 @@ const cockpit = (props) => {
     )
 };
 
-export default cockpit;
+export default React.memo(cockpit);  // React.memo відслідковує чи не змінився контент, щоб повторно не рендити його
