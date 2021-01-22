@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // import Auxiliary from '../../../hoc/Auxiliary';
 // import './Person.css'
@@ -30,6 +31,13 @@ class Person extends Component {
             </StyledDiv>
         );
     };
+}
+
+Person.propTypes = {
+    clickH2: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changeInput: PropTypes.func,
 }
 
 
