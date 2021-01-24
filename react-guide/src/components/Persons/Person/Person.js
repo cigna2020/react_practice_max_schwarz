@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -20,6 +20,18 @@ const StyledDiv = styled.div`
 
 class Person extends Component {
 
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount() {
+        // document.querySelector('input').focus(); // перший input буде в фокусі (курсор)
+        // this.inputElement.focus();
+        this.inputElementRef.current.focus();
+
+    }
+
     render() {
         console.log('[Person.js] rendering...');
 
@@ -27,7 +39,13 @@ class Person extends Component {
             <StyledDiv >
                 <h2 onClick={this.props.clickH2}>I'm {this.props.name}! And I'm {this.props.age} years old!</h2>
                 <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.changeInput} value={this.props.name} />
+                <input
+                    type="text"
+                    onChange={this.props.changeInput}
+                    value={this.props.name}
+                    // ref={(inputEl) => {this.inputElement = inputEl}}    // останній input буде в фокусі (курсор)
+                    ref={this.inputElementRef}
+                />
             </StyledDiv>
         );
     };
