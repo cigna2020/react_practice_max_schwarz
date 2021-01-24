@@ -27,10 +27,13 @@ class Person extends Component {
         this.inputElementRef = React.createRef();
     }
 
+    static contextType = AuthContext;
+
     componentDidMount() {
         // document.querySelector('input').focus(); // перший input буде в фокусі (курсор)
         // this.inputElement.focus();
         this.inputElementRef.current.focus();
+        // console.log(this.context.login)
 
     }
 
@@ -39,11 +42,14 @@ class Person extends Component {
 
         return (
             <StyledDiv >
-                <AuthContext.Consumer>
+                {/* <AuthContext.Consumer>
                     {context =>
                         context.auth ? <p>Authendicated</p> : <p>Please, Login</p>
                     }
-                </AuthContext.Consumer>
+                </AuthContext.Consumer> */}
+                {/* Використовуючи  static contextType = AuthContext отримуємо доступ до контексту без створення AuthContext.Consumer
+                Може бути використано лише в class-based component, у func.-based використовуй useContext */}
+                {this.context.auth ? <p>Authendicated</p> : <p>Please, Login</p>}
                 <h2 onClick={this.props.clickH2}>I'm {this.props.name}! And I'm {this.props.age} years old!</h2>
                 <p>{this.props.children}</p>
                 <input

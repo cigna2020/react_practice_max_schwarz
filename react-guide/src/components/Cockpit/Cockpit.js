@@ -1,15 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import styled from 'styled-components'
 
 import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
 
+    const authContext = useContext(AuthContext);  // authContext містить всі дані context
+
     const toggleBtnRef = React.createRef(null);
     // toggleBtnRef.current.click();  // в цьому місці працювати не буде, кнопка ще невідома. Слід використовувати в useEffect
 
     useEffect(() => {
         console.log('[Cocpit.js] useEffect');
+        console.log('Context: ' + authContext.auth)
         // setTimeout(() => {
         //     alert('use Effect')
         // }, 1000);
