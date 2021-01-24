@@ -3,11 +3,15 @@ import styled from 'styled-components'
 
 const cockpit = (props) => {
 
+    const toggleBtnRef = React.createRef(null);
+    // toggleBtnRef.current.click();  // в цьому місці працювати не буде, кнопка ще невідома. Слід використовувати в useEffect
+
     useEffect(() => {
         console.log('[Cocpit.js] useEffect');
-        setTimeout(() => {
-            alert('use Effect')
-        }, 1000);
+        // setTimeout(() => {
+        //     alert('use Effect')
+        // }, 1000);
+        toggleBtnRef.current.click();
         return () => {
             console.log('[Cocpit.js] cleanup work in useEffect')  // викликається коли об'єкт видаляється зі сторінки
         }
@@ -56,6 +60,7 @@ const cockpit = (props) => {
                 <StyledButton
                     showList={props.showList}
                     onClick={props.toggler}
+                    ref={toggleBtnRef}
                 >Toggle the list</StyledButton>
             </div>
         </div>
