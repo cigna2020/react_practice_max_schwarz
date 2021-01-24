@@ -4,6 +4,7 @@ import './App.css';
 import Persons from '../components/Persons/Persons.js'
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import AuthContext from '../context/auth-context';
 
 
 
@@ -23,6 +24,7 @@ class App extends Component {
         showList: false,
         showCocpit: true,
         changeCounter: 0,
+        authendicated: false,
     };
 
     switchNameHandler = (newName) => {
@@ -84,6 +86,10 @@ class App extends Component {
         this.setState({persons: persons});
     }
 
+    loginHandler = () => {
+        this.setState({authendicated: true})
+    }
+
     render() {
 
         console.log('[App.js] render...')
@@ -107,18 +113,20 @@ class App extends Component {
                 <button onClick={() => {
                     this.setState({showCocpit: false})
                 }}>Toggle Cockpit</button>
-                { this.state.showCocpit ? (
-                    <Cockpit
-                        title={this.props.appTitle}
-                        showList={this.state.showList}
-                        personsLength={this.state.persons.length}
-                        switcher={this.switchNameHandler}
-                        toggler={this.toggleList}
-                    />
-                ) : null
-                }
+                <AuthContext.Provider value={{auth: this.state.authendicated, login: this.loginHandler}}>
+                    {this.state.showCocpit ? (
+                        <Cockpit
+                            title={this.props.appTitle}
+                            showList={this.state.showList}
+                            personsLength={this.state.persons.length}
+                            switcher={this.switchNameHandler}
+                            toggler={this.toggleList}
+                        />
+                    ) : null
+                    }
 
-                {personsList}
+                    {personsList}
+                </AuthContext.Provider>
             </WithClass>
         )
     }

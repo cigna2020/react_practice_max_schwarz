@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import AuthContext from '../../../context/auth-context';
+
 // import Auxiliary from '../../../hoc/Auxiliary';
 // import './Person.css'
 
@@ -37,6 +39,11 @@ class Person extends Component {
 
         return (
             <StyledDiv >
+                <AuthContext.Consumer>
+                    {context =>
+                        context.auth ? <p>Authendicated</p> : <p>Please, Login</p>
+                    }
+                </AuthContext.Consumer>
                 <h2 onClick={this.props.clickH2}>I'm {this.props.name}! And I'm {this.props.age} years old!</h2>
                 <p>{this.props.children}</p>
                 <input
